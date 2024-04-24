@@ -1,0 +1,10 @@
+
+
+ 测试后台：http://101.34.12.71:5173/#/auth/login  admin  123456a
+ 
+appID：wx5fefbfffe5e2ea66
+测试api ：http://101.34.12.71:9092/api
+
+
+appID：wx77786b46bb0133d7
+正式api ：https://www.bbpsystem.cn/api
