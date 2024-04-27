@@ -37,7 +37,7 @@
 					label: '入库记录',
 					value: 0,
 				}, {
-					label: '装油记录',
+					label: '加油记录',
 					value: 1,
 				}, ],
 				current: 0,
@@ -123,7 +123,7 @@
 					}
 				});
 			},
-			//小罐车 装油记录
+			//小罐车 加油记录
 			oilFillList() {
 				commonApi.oilFillList({
 					page: this.page,

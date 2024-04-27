@@ -58,7 +58,7 @@
 		},{
 			"path": "oilfilldetails",
 			"style": {
-				"navigationBarTitleText": "装油详情",
+				"navigationBarTitleText": "加油详情",
 				"navigationBarBackgroundColor": "#4285F4"
 			}
 		},{

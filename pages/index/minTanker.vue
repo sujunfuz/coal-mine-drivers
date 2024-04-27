@@ -55,7 +55,7 @@
 		<view class="pad20" v-if="current==1">
 			<u--form labelPosition="left" ref="uForm">
 				<view class="formView">
-					<u-form-item label="装油图片" prop="fillImage" ref="fillImage" label-width="80px" required>
+					<u-form-item label="加油图片" prop="fillImage" ref="fillImage" label-width="80px" required>
 						<view class="imgView">
 							<image v-if="!fillImage" class="fileimg1" src="../../static/index/add.png"
 								@click="chooseFile(3)"></image>
@@ -67,17 +67,17 @@
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="装油升数" prop="fillLift" ref="fillLift" label-width="80px" required>
+					<u-form-item label="加油升数" prop="fillLift" ref="fillLift" label-width="80px" required>
 						<view>{{fillLift}}</view>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="装油车型" prop="fillCar" ref="fillCar" label-width="80px" required>
+					<u-form-item label="加油车型" prop="fillCar" ref="fillCar" label-width="80px" required>
 						<u--input v-model="fillCar" border="none" placeholder="请输入"></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="装油地址" prop="fillAddress" ref="fillAddress" label-width="80px" required>
+					<u-form-item label="加油地址" prop="fillAddress" ref="fillAddress" label-width="80px" required>
 						<u--input v-model="fillAddress" border="none" placeholder="请输入"></u--input>
 					</u-form-item>
 				</view>
@@ -104,7 +104,7 @@
 					label: '入库登记',
 					value: 0,
 				}, {
-					label: '装油登记',
+					label: '加油登记',
 					value: 1,
 				}, ],
 				current: 0,
@@ -329,18 +329,18 @@
 				});
 			},
 
-			//小罐车装油登记
+			//小罐车加油登记
 			oilFillSub() {
 				if (!this.fillImage) {
-					this.showMsg('请上传装油图片')
+					this.showMsg('请上传加油图片')
 					return
 				}
 				if (!this.fillCar) {
-					this.showMsg('请输入装油车型')
+					this.showMsg('请输入加油车型')
 					return
 				}
 				if (!this.fillAddress) {
-					this.showMsg('请输入装油地址')
+					this.showMsg('请输入加油地址')
 					return
 				}
 				if (!this.checkCode) {

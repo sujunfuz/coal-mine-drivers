@@ -100,7 +100,7 @@ export default {
 					} else if (res.data.status == 401) {
 						uni.showToast({
 							title: '请重新登录',
-							icon: 'error',
+							icon: 'none',
 							duration: 2000,
 						})
 						setTimeout(() => {

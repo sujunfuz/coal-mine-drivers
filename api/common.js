@@ -44,15 +44,15 @@ export default {
 	oilRecordDetails: (id, data) => {
 		return request.get('/client/oilRecord/' + id, data, true);
 	},
-	//装油提交 小罐车
+	//加油提交 小罐车
 	oilFillSub: (data) => {
 		return request.post('/client/oilFill/submit', data);
 	},
-	//装油记录分页
+	//加油记录分页
 	oilFillList: (data) => {
 		return request.get('/client/oilFill/page', data);
 	},
-	//装油记录详情
+	//加油记录详情
 	oilFillDetails: (id, data) => {
 		return request.get('/client/oilFill/' + id, data, true);
 	},

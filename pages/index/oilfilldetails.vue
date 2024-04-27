@@ -8,23 +8,23 @@
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="装油图片" prop="fillImage" ref="fillImage" label-width="100px">
+					<u-form-item label="加油图片" prop="fillImage" ref="fillImage" label-width="100px">
 						<image @click="clickImg(rs.fillImage)" v-if="rs.fillImage" class="img1" :src="ImgUrl+rs.fillImage"
 							mode="scaleToFill"></image>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="装油升数" prop="fillLift" ref="fillLift" label-width="100px">
+					<u-form-item label="加油升数" prop="fillLift" ref="fillLift" label-width="100px">
 						{{rs.fillLift}}
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="装油车型" prop="fillCar" ref="fillCar" label-width="100px">
+					<u-form-item label="加油车型" prop="fillCar" ref="fillCar" label-width="100px">
 						{{rs.fillCar}}
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="装油地址" prop="fillAddress" ref="fillAddress" label-width="100px">
+					<u-form-item label="加油地址" prop="fillAddress" ref="fillAddress" label-width="100px">
 						{{rs.fillAddress}}
 					</u-form-item>
 				</view>
