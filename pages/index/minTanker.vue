@@ -204,8 +204,8 @@
 					url: 'https://aip.baidubce.com/oauth/2.0/token',
 					data: {
 						grant_type: 'client_credentials',
-						client_id: "ET6mVtMTRAqRx7KdZa70VqAu", //APi key
-						client_secret: "ENJuRq9E6lHwBgDuNkZJgiS6r6WddMFd" //Secret Key
+						client_id: "14ninb2Tx3nXReXDqlIXsOZE", //APi key
+						client_secret: "rKlxPQ9FXe5MpiQfmPmvfky6qGhuPVkl" //Secret Key
 					},
 					method: 'POST',
 					header: {
@@ -213,7 +213,8 @@
 					},
 					success: (res) => {
 						uni.request({
-							url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic',
+							// url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic',
+							url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/meter',//最新高精度
 							data: {
 								image: path,
 								access_token: res.data.access_token

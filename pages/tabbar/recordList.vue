@@ -155,7 +155,6 @@
 						}
 						break;
 				}
-
 			}
 		},
 
@@ -163,33 +162,20 @@
 			if (this.status == 'nomore') {
 				return;
 			}
-			this.currentPage++;
+			this.page++;
 			switch (this.plateType) {
 				case 0:
-					this.page = 1;
-					this.status = 'loading';
-					this.dataList = [];
 					this.freightSettlementList()
 					break;
 				case 1:
-					this.page = 1;
-					this.status = 'loading';
-					this.dataList = [];
 					this.oilRecordList()
 					break;
 				case 2:
 					if (this.current == 0) {
-						this.page = 1;
-						this.status = 'loading';
-						this.dataList = [];
 						this.oilRecordList()
 					} else {
-						this.page = 1;
-						this.status = 'loading';
-						this.dataList = [];
 						this.oilFillList()
 					}
-
 					break;
 			}
 		},
