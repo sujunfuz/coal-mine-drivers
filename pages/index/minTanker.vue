@@ -78,7 +78,10 @@
 				</view>
 				<view class="formView">
 					<u-form-item label="加油地址" prop="fillAddress" ref="fillAddress" label-width="80px" required>
-						<u--input v-model="fillAddress" border="none" placeholder="请输入"></u--input>
+						<view class="flex-cb" @click="pickerShow=true"  style="position: relative;z-index: 999;">
+							<view :class="fillAddress?'':'colorc4'">{{fillAddress||"请选择"}}</view>
+							<u-icon name="arrow-right"></u-icon>
+						</view>
 					</u-form-item>
 				</view>
 				<view class="formView">
@@ -89,6 +92,8 @@
 			</u--form>
 			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap.stop="oilFillSub">提交</view>
 		</view>
+		<u-picker :show="pickerShow" :columns="columns" keyName="fillAddress" @cancel='pickerShow=false'
+			@confirm='pickerConfirm' :closeOnClickOverlay='true'></u-picker>
 	</view>
 </template>
 
@@ -123,6 +128,10 @@
 				fillCar: '',
 				fillImage: '',
 				fillLift: "",
+
+				fillUnitPrice: '',
+				pickerShow: false,
+				columns: [],
 			}
 		},
 		computed: {
@@ -141,6 +150,14 @@
 			},
 		},
 		methods: {
+			//加油地址
+			addressList() {
+				commonApi.addressList().then((res) => {
+					if (res.status == 200) {
+						this.columns[0] = res.data;
+					}
+				});
+			},
 			tabsClick(e) {
 				if (this.current != e.value) {
 					this.inImage = '';
@@ -154,6 +171,16 @@
 					this.fillLift = '';
 				}
 				this.current = e.value;
+				console.log(this.current)
+				if (this.current == 1) {
+					this.addressList()
+				}
+			},
+			pickerConfirm(e) {
+				console.log(e)
+				this.fillUnitPrice = e.value[0].fillUnitPrice;
+				this.fillAddress = e.value[0].fillAddress;
+				this.pickerShow = false
 			},
 			chooseFile(type) {
 				let that = this;
@@ -214,7 +241,7 @@
 					success: (res) => {
 						uni.request({
 							// url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic',
-							url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/meter',//最新高精度
+							url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/meter', //最新高精度
 							data: {
 								image: path,
 								access_token: res.data.access_token
@@ -341,7 +368,7 @@
 					return
 				}
 				if (!this.fillAddress) {
-					this.showMsg('请输入加油地址')
+					this.showMsg('请选择加油地址')
 					return
 				}
 				if (!this.checkCode) {
@@ -357,6 +384,7 @@
 					fillLift: this.fillLift,
 					fillCar: this.fillCar,
 					fillAddress: this.fillAddress,
+					fillUnitPrice: this.fillUnitPrice,
 					checkCode: this.checkCode,
 					plateType: 2,
 				}).then((res) => {

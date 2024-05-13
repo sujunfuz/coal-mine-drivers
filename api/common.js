@@ -44,6 +44,12 @@ export default {
 	oilRecordDetails: (id, data) => {
 		return request.get('/client/oilRecord/' + id, data, true);
 	},
+	
+	//加油地址列表
+	addressList: (data) => {
+		return request.get('/client/oilFill/addressList', data);
+	},
+	
 	//加油提交 小罐车
 	oilFillSub: (data) => {
 		return request.post('/client/oilFill/submit', data);
