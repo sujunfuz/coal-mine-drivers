@@ -35,6 +35,9 @@ export default {
 		this.plateType = uni.getStorageSync('userInfo').plateType;
 	},
 	methods: {
+		myIsNaN(value) {
+		   return (typeof value === 'number' && !isNaN(value));
+		},
 		//验证非负浮点数
 		isNonNegativeFloat(value) {
 		  return /^\d+(\.\d+)?$/.test(value);

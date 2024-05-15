@@ -194,8 +194,16 @@
 					this.showMsg('请上传进库吨数照片')
 					return
 				}
+				if(!this.myIsNaN(Number(this.inTons))){
+					this.showMsg('进库吨数格式错误')
+					return
+				}
 				if (!this.outImage) {
 					this.showMsg('请上传出库吨数照片')
+					return
+				}
+				if(!this.myIsNaN(Number(this.outTons))){
+					this.showMsg('出库吨数格式错误')
 					return
 				}
 				if (this.netTons < 0) {

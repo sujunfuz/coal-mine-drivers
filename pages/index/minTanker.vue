@@ -324,8 +324,16 @@
 					this.showMsg('请上传进库吨数照片')
 					return
 				}
+				if(!this.myIsNaN(Number(this.inTons))){
+					this.showMsg('进库吨数格式错误')
+					return
+				}
 				if (!this.outImage) {
 					this.showMsg('请上传出库吨数照片')
+					return
+				}
+				if(!this.myIsNaN(Number(this.outTons))){
+					this.showMsg('出库吨数格式错误')
 					return
 				}
 				if (this.netTons < 0) {
@@ -366,6 +374,10 @@
 					this.showMsg('请上传加油图片')
 					return
 				}
+				if(!this.myIsNaN(Number(this.fillLift))){
+					this.showMsg('加油升数格式错误')
+					return
+				}
 				if (!this.fillCar) {
 					this.showMsg('请输入加油车型')
 					return
@@ -384,7 +396,7 @@
 				let that = this;
 				commonApi.oilFillSub({
 					fillImage: this.fillImage,
-					fillLift: this.fillLift,
+					fillLift:this.fillLift,
 					fillCar: this.fillCar,
 					fillAddress: this.fillAddress,
 					fillUnitPrice: this.fillUnitPrice,
