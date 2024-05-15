@@ -78,7 +78,7 @@
 				</view>
 				<view class="formView">
 					<u-form-item label="加油地址" prop="fillAddress" ref="fillAddress" label-width="80px" required>
-						<view class="flex-cb" @click="pickerShow=true"  style="position: relative;z-index: 999;">
+						<view class="flex-cb" @click="pickerShow=true" style="position: relative;z-index: 999;">
 							<view :class="fillAddress?'':'colorc4'">{{fillAddress||"请选择"}}</view>
 							<u-icon name="arrow-right"></u-icon>
 						</view>
@@ -130,6 +130,7 @@
 				fillLift: "",
 
 				fillUnitPrice: '',
+				fillAddressId: '',
 				pickerShow: false,
 				columns: [],
 			}
@@ -166,6 +167,7 @@
 					this.outTons = '';
 					this.checkCode = '';
 					this.fillAddress = '';
+					this.fillAddressId = '';
 					this.fillCar = '';
 					this.fillImage = '';
 					this.fillLift = '';
@@ -180,6 +182,7 @@
 				console.log(e)
 				this.fillUnitPrice = e.value[0].fillUnitPrice;
 				this.fillAddress = e.value[0].fillAddress;
+				this.fillAddressId = e.value[0].id;
 				this.pickerShow = false
 			},
 			chooseFile(type) {
@@ -385,6 +388,7 @@
 					fillCar: this.fillCar,
 					fillAddress: this.fillAddress,
 					fillUnitPrice: this.fillUnitPrice,
+					fillAddressId: this.fillAddressId,
 					checkCode: this.checkCode,
 					plateType: 2,
 				}).then((res) => {
