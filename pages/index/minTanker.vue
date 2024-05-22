@@ -31,12 +31,14 @@
 				</view>
 				<view class="formView">
 					<u-form-item label="进库吨数" prop="inTons" ref="inTons" label-width="100px" required>
-						<view>{{inTons}}</view>
+						<!-- <view>{{inTons}}</view> -->
+						<u--input v-model="inTons" border="none" type='digit'></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
 					<u-form-item label="出库吨数" prop="outTons" ref="outTons" label-width="100px" required>
-						<view>{{outTons}}</view>
+						<!-- <view>{{outTons}}</view> -->
+						<u--input v-model="outTons" border="none" type='digit'></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
@@ -324,7 +326,7 @@
 					this.showMsg('请上传进库吨数照片')
 					return
 				}
-				if(!this.myIsNaN(Number(this.inTons))){
+				if (!this.myIsNaN(Number(this.inTons))) {
 					this.showMsg('进库吨数格式错误')
 					return
 				}
@@ -332,7 +334,7 @@
 					this.showMsg('请上传出库吨数照片')
 					return
 				}
-				if(!this.myIsNaN(Number(this.outTons))){
+				if (!this.myIsNaN(Number(this.outTons))) {
 					this.showMsg('出库吨数格式错误')
 					return
 				}
@@ -374,7 +376,7 @@
 					this.showMsg('请上传加油图片')
 					return
 				}
-				if(!this.myIsNaN(Number(this.fillLift))){
+				if (!this.myIsNaN(Number(this.fillLift))) {
 					this.showMsg('加油升数格式错误')
 					return
 				}
@@ -396,7 +398,7 @@
 				let that = this;
 				commonApi.oilFillSub({
 					fillImage: this.fillImage,
-					fillLift:this.fillLift,
+					fillLift: this.fillLift,
 					fillCar: this.fillCar,
 					fillAddress: this.fillAddress,
 					fillUnitPrice: this.fillUnitPrice,

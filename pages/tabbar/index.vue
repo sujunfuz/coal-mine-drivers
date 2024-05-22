@@ -61,12 +61,15 @@
 					this.showMsg('请先登录解锁更多功能吧~')
 					return
 				}
-				if (this.plateType!=e.plateType) {
+				console.log(e.plateType)
+				if ((this.plateType!=e.plateType)&&e.plateType!=-1) {
 					this.showMsg('车辆类型不符，请确认后重试~')
 					return
 				}
 				this.goToPage(e.url)
 			},
+			
+			
 			confirm() {
 				if (!this.value) {
 					this.showMsg('请输入煤运口令')

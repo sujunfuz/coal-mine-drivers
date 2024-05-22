@@ -79,6 +79,18 @@
 				"navigationBarTitleText": "小罐车登记",
 				"navigationBarBackgroundColor": "#4285F4"
 			}
+		},{
+			"path": "hardware",
+			"style": {
+				"navigationBarTitleText": "五金数据登记",
+				"navigationBarBackgroundColor": "#4285F4"
+			}
+		},{
+			"path": "exportHardware",
+			"style": {
+				"navigationBarTitleText": "五金导出登记",
+				"navigationBarBackgroundColor": "#4285F4"
+			}
 		}]
 	}, {
 		"root": "pages/mine",

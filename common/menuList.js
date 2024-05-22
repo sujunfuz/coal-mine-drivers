@@ -11,18 +11,25 @@ let menulist = [{
 			plateType: 0,
 		}, {
 			title: "大罐车登记",
-			id: 1,
+			id: 2,
 			image: '../../static/index/daguan.png',
 			status: false,
 			url: "/pages/index/maxTanker",
 			plateType: 1,
 		}, {
 			title: "小罐车登记",
-			id: 1,
+			id: 3,
 			image: '../../static/index/xiaoguan.png',
 			status: false,
 			url: "/pages/index/minTanker",
 			plateType: 2,
+		}, {
+			title: "五金数据",
+			id: 4,
+			image: '../../static/index/wujin.png',
+			status: false,
+			url: "/pages/index/hardware",
+			plateType: -1,
 		}
 
 	]

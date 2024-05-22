@@ -146,6 +146,10 @@
   background-color: #ffcd0e;
 }
 
+.bgGreen{
+	background-color: #5AC725;
+}
+
 .bgTBMain {
   background: linear-gradient(0deg, #ff675e 0%, #4285F4 100%);
 }
@@ -510,6 +514,15 @@
   text-align: center;
   border-radius: 50rpx;
 }
+
+.minbts1 {
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
 .fixedbts {
   position: fixed;
   width: 100%;
@@ -519,6 +532,7 @@
   height: 110rpx;
   text-align: center;
 }
+
 .btsView {
   position: fixed;
   left: 0;
