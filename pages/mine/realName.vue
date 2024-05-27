@@ -103,7 +103,7 @@
 				plateType: '',
 				pickerShow: false,
 				columns: [
-					['煤运车', '大罐车', '小罐车']
+					['煤运车', '大罐车', '小罐车', '五金']
 				]
 			}
 		},
@@ -131,6 +131,9 @@
 						break;
 					case 2:
 						plateTypeName = '小罐车';
+						break;
+					case 3:
+						plateTypeName = '五金';
 						break;
 				}
 				return plateTypeName
@@ -189,7 +192,7 @@
 				wx.login({
 					success: (reswx) => {
 						wx.uploadFile({
-							url: that.baseUrl + '/client/register',
+							url: that.baseUrl + '/register',
 							filePath: that.idcardImage.path,
 							name: 'idcardImage',
 							formData: {
@@ -199,7 +202,7 @@
 								code: reswx.code,
 								checkCode: this.checkCode,
 								plateType: this.plateTypeName == '煤运车' ? 0 : this.plateTypeName ==
-									'大罐车' ? 1 : 2
+									'大罐车' ? 1 : this.plateTypeName == '小罐车' ? 2 : 3
 							},
 							success(uploadFileRes) {
 								// uni.hideLoading()

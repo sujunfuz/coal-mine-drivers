@@ -7,7 +7,7 @@
 			<view class="content_li" v-for="(item,index) in menuList" :key='index'>
 				<view class="fontsize30 color999">{{item.title}}</view>
 				<view class="flex-c marT20">
-					<view style="width: 25%;"  @click="goUrl(list)" v-for="(list,index1) in item.child" :key='index1'>
+					<view style="width: 25%;" @click="goUrl(list)" v-for="(list,index1) in item.child" :key='index1'>
 						<image class="img1" :src="list.image" mode="scaleToFill"></image>
 						<view class="marT10 textC">{{list.title}}</view>
 					</view>
@@ -15,7 +15,7 @@
 			</view>
 		</view>
 		<!-- 登记 -->
-	<!-- 	<view @touchmove.stop.prevent="()=>{return false}">
+		<!-- 	<view @touchmove.stop.prevent="()=>{return false}">
 			<u-popup :show="popupShow" :safeAreaInsetBottom='false' mode="center" round="10" :closeable='true'
 				@close="popupShow=false;value=''">
 				<view class="directSaleView" @touchmove.stop.prevent="()=>{return false}">
@@ -56,20 +56,20 @@
 			this.menuList = list;
 		},
 		methods: {
-			goUrl(e){
+			goUrl(e) {
 				if (!this.isLogin) {
 					this.showMsg('请先登录解锁更多功能吧~')
 					return
 				}
 				console.log(e.plateType)
-				if ((this.plateType!=e.plateType)&&e.plateType!=-1) {
+				if (this.plateType != e.plateType) {
 					this.showMsg('车辆类型不符，请确认后重试~')
 					return
 				}
 				this.goToPage(e.url)
 			},
-			
-			
+
+
 			confirm() {
 				if (!this.value) {
 					this.showMsg('请输入煤运口令')
@@ -99,7 +99,7 @@
 			.content_li {
 				border-radius: 20rpx;
 				background-color: #fff;
-				
+
 				.title {
 					font-size: 26rpx;
 					color: #959595;

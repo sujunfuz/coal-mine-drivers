@@ -5,7 +5,7 @@ import config from '../config.js'
 let myAppId = config.myAppId;
 let baseUrl = config.baseUrl;
 let ossIconUrl = config.ossIconUrl;
-let ImgUrl = `${baseUrl}/common/storage/download/` //公用文件上传地址
+let ImgUrl = `${baseUrl}/common/storage/download/` //公用文件下载地址
 
 let uploadUrl = `${baseUrl}/common/storage/upload` //公用文件上传
 

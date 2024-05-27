@@ -24,12 +24,12 @@ let menulist = [{
 			url: "/pages/index/minTanker",
 			plateType: 2,
 		}, {
-			title: "五金数据",
+			title: "五金",
 			id: 4,
 			image: '../../static/index/wujin.png',
 			status: false,
 			url: "/pages/index/hardware",
-			plateType: -1,
+			plateType: 3,
 		}
 
 	]

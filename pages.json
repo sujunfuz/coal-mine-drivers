@@ -88,7 +88,13 @@
 		},{
 			"path": "exportHardware",
 			"style": {
-				"navigationBarTitleText": "五金导出登记",
+				"navigationBarTitleText": "五金导入登记",
+				"navigationBarBackgroundColor": "#4285F4"
+			}
+		},{
+			"path": "hardwaredetails",
+			"style": {
+				"navigationBarTitleText": "五金详情",
 				"navigationBarBackgroundColor": "#4285F4"
 			}
 		}]

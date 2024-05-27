@@ -72,6 +72,12 @@
 						}
 
 						break;
+					case 3:
+						this.page = 1;
+						this.status = 'loading';
+						this.dataList = [];
+						this.hardwareList()
+						break;
 				}
 			}
 		},
@@ -83,7 +89,7 @@
 					this.status = 'loading';
 					this.dataList = [];
 					this.oilRecordList()
-				} else {
+				}else {
 					this.page = 1;
 					this.status = 'loading';
 					this.dataList = [];
@@ -139,6 +145,22 @@
 					}
 				});
 			},
+			//五金类型
+			hardwareList() {
+				commonApi.hardwareList({
+					page: this.page,
+					size: this.size,
+				}).then((res) => {
+					if (res.status == 200) {
+						let resOrderList = res.data.records;
+						this.dataList = this.dataList.concat(resOrderList);
+						this.total = res.data.total;
+						if (resOrderList.length < this.size) {
+							this.status = "nomore";
+						}
+					}
+				});
+			},
 			goDetails(it) {
 				switch (this.plateType) {
 					case 0:
@@ -153,6 +175,9 @@
 						} else {
 							this.goToPage('/pages/index/oilfilldetails?id=' + it.id)
 						}
+						break;
+					case 3:
+						this.goToPage('/pages/index/hardwaredetails?id=' + it.id)
 						break;
 				}
 			}
@@ -176,6 +201,9 @@
 					} else {
 						this.oilFillList()
 					}
+					break;
+				case 3:
+					this.hardwareList()
 					break;
 			}
 		},

@@ -11,31 +11,41 @@
 					<view class="fontsize32">手工输入提交:</view>
 				</view>
 				<view class="formView">
-					<u-form-item label="客户名称" prop="userName" ref="userName" label-width="80px" required>
-						<view :class="userName?'':'colorc4'" @click="pickerShow=true">
-							{{userName||'请选择'}}
+					<u-form-item label="客户名称" prop="clientName" ref="clientName" label-width="80px" required>
+						<view :class="clientName?'':'colorc4'" @click="pickerShow=true">
+							{{clientName||'请选择'}}
 						</view>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="物品名称" prop="shopName" ref="shopName" label-width="80px" required>
-						<u--input v-model="shopName" border="none" placeholder="请输入"></u--input>
+					<u-form-item label="物品名称" prop="goodsName" ref="goodsName" label-width="80px" required>
+						<u--input v-model="goodsName" border="none" placeholder="请输入"></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="规格" prop="spec" ref="spec" label-width="80px" required>
-						<u--input v-model="spec" border="none" placeholder="请输入规格"></u--input>
+					<u-form-item label="规格" prop="specification" ref="specification" label-width="80px">
+						<u--input v-model="specification" border="none" placeholder="请输入规格"></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="数量" prop="num" ref="num" label-width="80px" required>
-						<u--input v-model="num" border="none" placeholder="请输入" type='number'></u--input>
+					<u-form-item label="单位" prop="unit" ref="unit" label-width="80px">
+						<u--input v-model="unit" border="none" placeholder="请输入单位"></u--input>
+					</u-form-item>
+				</view>
+				<view class="formView">
+					<u-form-item label="数量" prop="quantity" ref="quantity" label-width="80px" required>
+						<u--input v-model="quantity" border="none" placeholder="请输入" type='number'></u--input>
+					</u-form-item>
+				</view>
+				<view class="formView">
+					<u-form-item label="五金口令" prop="checkCode" ref="checkCode" label-width="100px" required>
+						<u--input v-model="checkCode" border="none" placeholder="请输入"></u--input>
 					</u-form-item>
 				</view>
 			</u--form>
 			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap.stop="submitForm">提交</view>
 		</view>
-		<u-picker :show="pickerShow" :columns="columns" keyName='label' @confirm='pickerConfirm' @cancel='pickerCancel'>
+		<u-picker :show="pickerShow" :columns="columns" keyName='clientName' @confirm='pickerConfirm' @cancel='pickerCancel'>
 		</u-picker>
 	</view>
 </template>
@@ -51,63 +61,70 @@
 				inputStyle: {
 					padding: '15rpx 20rpx',
 				},
-				userId: "",
-				userName: '',
-				shopName: '',
-				spec: '',
-				num: "",
+				clientId: "",
+				clientName: '',
+				goodsName: '',
+				specification: '',
+				quantity: "",
+				checkCode:"",
 				pickerShow: false,
 				columns: [
-					[{
-						label: '用户1',
-						value: 1
-					}, {
-						label: '用户2',
-						value: 2
-					}]
+					[]
 				]
 			}
 		},
 		onLoad(e) {
-
+			this.hardwareTop()
 		},
 		methods: {
+			//客户列表
+			hardwareTop() {
+				commonApi.hardwareTop().then((res) => {
+					if (res.status == 200) {
+						this.columns[0] = res.data;
+					}
+				});
+			},
+			
 			pickerCancel() {
-				this.userId = '';
-				this.userName = '';
+				this.clientId = '';
+				this.clientName = '';
 				this.pickerShow = false;
 			},
 			pickerConfirm(e) {
-				this.userId = e.value[0].value
-				this.userName = e.value[0].label
+				console.log(e)
+				this.clientId = e.value[0].id
+				this.clientName = e.value[0].clientName
 				this.pickerShow = false;
 			},
 			submitForm() {
-				if (!this.userId) {
-					this.showMsg('请选择用户姓名')
+				if (!this.clientId) {
+					this.showMsg('请选择客户')
 					return
 				}
-				if (!this.shopName) {
+				if (!this.goodsName) {
 					this.showMsg('请输入物品名称')
 					return
 				}
-				if (!this.spec) {
-					this.showMsg('请输入规格')
+				if (!this.quantity) {
+					this.showMsg('请输入数量')
 					return
 				}
-				if (!this.num) {
-					this.showMsg('请输入数量')
+				if (!this.checkCode) {
+					this.showMsg('请输入口令')
 					return
 				}
 				uni.showLoading({
 					title: '加载中',
 				})
 				let that = this;
-				commonApi.oilRecordSub({
-					userId: this.userId,
-					shopName: this.shopName,
-					num: this.num,
-					spec: this.spec,
+				commonApi.hardwareSubmit({
+					clientId: this.clientId,
+					goodsName: this.goodsName,
+					quantity: this.quantity,
+					specification: this.specification,
+					unit:this.unit,
+					checkCode:this.checkCode
 				}).then((res) => {
 					if (res.status == 200) {
 						that.showMsg('操作成功')
