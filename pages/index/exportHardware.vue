@@ -12,7 +12,8 @@
 						<view class="imgView">
 							<image v-if="!tempFiles.name" class="fileimg1" src="../../static/index/add.png"
 								@click="chooseFile()"></image>
-							<image v-else class="fileimg1" src="../../static/mine/excel.png" @click="popupShow=true"></image>
+							<image v-else class="fileimg1" src="../../static/mine/excel.png" @click="popupShow=true">
+							</image>
 							<view v-if="tempFiles.name" class="del" @click="delimg()">
 								<u-icon name="close-circle-fill" size='20' color='red'></u-icon>
 							</view>
@@ -129,6 +130,8 @@
 								console.log(data)
 								if (data.status == 200) {
 									that.goodsList = data.data;
+								} else {
+									that.showMsg(data.message)
 								}
 							},
 							fail: (resfail) => {
@@ -147,7 +150,7 @@
 					this.showMsg('请选择客户')
 					return
 				}
-				if (!this.tempFiles.name&&this.goodsList.length==0) {
+				if (!this.tempFiles.name && this.goodsList.length == 0) {
 					this.showMsg('请导入文件')
 					return
 				}
@@ -162,7 +165,7 @@
 				commonApi.uploadExcel({
 					clientId: this.clientId,
 					checkCode: this.checkCode,
-					goodsList:this.goodsList
+					goodsList: this.goodsList
 				}).then((res) => {
 					if (res.status == 200) {
 						that.showMsg('操作成功')
@@ -255,11 +258,12 @@
 				.tableLeft {
 					width: 100%;
 
-					.table1{
+					.table1 {
 						width: 30%;
 						text-align: center;
 					}
-					.table2{
+
+					.table2 {
 						width: 20%;
 						text-align: center;
 					}

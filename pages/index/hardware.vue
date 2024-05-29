@@ -65,6 +65,7 @@
 				clientName: '',
 				goodsName: '',
 				specification: '',
+				unit:"",
 				quantity: "",
 				checkCode:"",
 				pickerShow: false,
