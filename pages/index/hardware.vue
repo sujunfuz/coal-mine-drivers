@@ -1,9 +1,9 @@
 <template>
 	<view class="registerbg">
 		<view class="pad20">
-			<u--form labelPosition="left" ref="uForm">
+			<u--form labelPosition="left" ref="uForm" labelAlign='right'>
 				<view class="flex-c marL20">
-					<view class="fontsize32">提交表格提交:</view>
+					<view class="fontsize32">导入表格提交:</view>
 					<view class="minbts1 bgGreen colorfff marL32" @click="goToPage('/pages/index/exportHardware')">一键导入
 					</view>
 				</view>
@@ -11,34 +11,34 @@
 					<view class="fontsize32">手工输入提交:</view>
 				</view>
 				<view class="formView">
-					<u-form-item label="客户名称" prop="clientName" ref="clientName" label-width="80px" required>
+					<u-form-item label="客户名称" prop="clientName" ref="clientName" label-width="68px" required>
 						<view :class="clientName?'':'colorc4'" @click="pickerShow=true">
 							{{clientName||'请选择'}}
 						</view>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="物品名称" prop="goodsName" ref="goodsName" label-width="80px" required>
+					<u-form-item label="物品名称" prop="goodsName" ref="goodsName" label-width="68px" required>
 						<u--input v-model="goodsName" border="none" placeholder="请输入"></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="规格" prop="specification" ref="specification" label-width="80px">
+					<u-form-item label="规格" prop="specification" ref="specification" label-width="68px">
 						<u--input v-model="specification" border="none" placeholder="请输入规格"></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="单位" prop="unit" ref="unit" label-width="80px">
+					<u-form-item label="单位" prop="unit" ref="unit" label-width="68px">
 						<u--input v-model="unit" border="none" placeholder="请输入单位"></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="数量" prop="quantity" ref="quantity" label-width="80px" required>
+					<u-form-item label="数量" prop="quantity" ref="quantity" label-width="68px" required>
 						<u--input v-model="quantity" border="none" placeholder="请输入" type='number'></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
-					<u-form-item label="五金口令" prop="checkCode" ref="checkCode" label-width="100px" required>
+					<u-form-item label="五金口令" prop="checkCode" ref="checkCode" label-width="68px" required>
 						<u--input v-model="checkCode" border="none" placeholder="请输入"></u--input>
 					</u-form-item>
 				</view>
