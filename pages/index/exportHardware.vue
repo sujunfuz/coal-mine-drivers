@@ -17,6 +17,7 @@
 							<view v-if="tempFiles.name" class="del" @click="delimg()">
 								<u-icon name="close-circle-fill" size='20' color='red'></u-icon>
 							</view>
+							<view v-if="tempFiles.name" class="colorMain yulan" @click="popupShow=true">预览</view>
 						</view>
 						<view @click="popupShow=true">{{tempFiles.name}}</view>
 					</u-form-item>
@@ -39,17 +40,17 @@
 					<scroll-view scroll-y="true" style="max-height: 60vh;">
 						<view class="flex-cb color6e tableView">
 							<scroll-view scroll-x="true" class="tableLeft">
-								<view class="flex table_th">
-									<view class="table1 u-line-1">物品名称</view>
-									<view class="table2 u-line-1">规格</view>
-									<view class="table2 u-line-1">单位</view>
-									<view class="table1 u-line-1">数量</view>
+								<view class="flex-c table_th">
+									<view class="table1">物品名称</view>
+									<view class="table2">规格</view>
+									<view class="table2">单位</view>
+									<view class="table1">数量</view>
 								</view>
-								<view class="flex table_td" v-for="(item, index) in goodsList" :key='index'>
-									<view class="table1 u-line-1">{{item.goodsName||'-'}}</view>
-									<view class="table2 u-line-1">{{item.specification||'-'}}</view>
-									<view class="table2 u-line-1">{{item.unit||'-'}}</view>
-									<view class="table1 u-line-1">{{item.quantity||'-'}}</view>
+								<view class="flex-c table_td" v-for="(item, index) in goodsList" :key='index'>
+									<view class="table1">{{item.goodsName||'-'}}</view>
+									<view class="table2">{{item.specification||'-'}}</view>
+									<view class="table2">{{item.unit||'-'}}</view>
+									<view class="table1">{{item.quantity||'-'}}</view>
 								</view>
 							</scroll-view>
 						</view>
@@ -216,6 +217,13 @@
 					height: 138rpx;
 				}
 
+				.yulan {
+					position: absolute;
+					top: 48rpx;
+					left: 168rpx;
+					width: 60rpx;
+				}
+
 				.del {
 					position: absolute;
 					right: -10rpx;
@@ -250,8 +258,7 @@
 				}
 
 				.table_td {
-					height: 50rpx;
-					line-height: 50rpx;
+					padding-bottom: 15rpx;
 					font-size: 24rpx;
 				}
 
