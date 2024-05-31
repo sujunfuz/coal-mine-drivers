@@ -120,7 +120,7 @@
 						console.log("res", res)
 						that.tempFiles = res.tempFiles[0];
 						uni.uploadFile({
-							url: that.baseUrl + '/hardware/upload', //五金文件上传
+							url: that.baseUrl + '/client/hardware/upload', //五金文件上传
 							filePath: that.tempFiles.path,
 							header: {
 								'Authorization': uni.getStorageSync('token')

@@ -4,6 +4,6 @@ export default {
 	myAppId: "wx5fefbfffe5e2ea66", // 测试
 	myAppid:"wx77786b46bb0133d7", //正式
 	
-	// baseUrl: "http://101.34.12.71:9092/api/client", // 测试api
-	baseUrl:"https://www.bbpsystem.cn/api/client",//正式api
+	// baseUrl: "http://101.34.12.71:9092/api", // 测试api
+	baseUrl:"https://www.bbpsystem.cn/api",//正式api
 };

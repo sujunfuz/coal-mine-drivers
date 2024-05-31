@@ -110,7 +110,7 @@
 				})
 				let that = this;
 				wx.uploadFile({
-					url: that.baseUrl + '/freightSettlement/submit1/' + that.id,
+					url: that.baseUrl + '/client/freightSettlement/submit1/' + that.id,
 					filePath: that.receiptBillImage.path,
 					name: 'receiptBillImage',
 					formData: {

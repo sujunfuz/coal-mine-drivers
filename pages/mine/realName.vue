@@ -192,7 +192,7 @@
 				wx.login({
 					success: (reswx) => {
 						wx.uploadFile({
-							url: that.baseUrl + '/register',
+							url: that.baseUrl + '/client/register',
 							filePath: that.idcardImage.path,
 							name: 'idcardImage',
 							formData: {
