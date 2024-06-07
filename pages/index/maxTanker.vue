@@ -49,7 +49,8 @@
 					</u-form-item>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap.stop="oilRecordSub">提交</view>
+			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap="$u.throttle(oilRecordSub, 1000)">提交
+			</view>
 		</view>
 	</view>
 </template>
@@ -143,7 +144,7 @@
 					success: (res) => {
 						uni.request({
 							// url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic',
-							url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/meter',//最新高精度
+							url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/meter', //最新高精度
 							data: {
 								image: path,
 								access_token: res.data.access_token
@@ -196,7 +197,7 @@
 					this.showMsg('请上传进库吨数照片')
 					return
 				}
-				if(!this.myIsNaN(Number(this.inTons))){
+				if (!this.myIsNaN(Number(this.inTons))) {
 					this.showMsg('进库吨数格式错误')
 					return
 				}
@@ -204,7 +205,7 @@
 					this.showMsg('请上传出库吨数照片')
 					return
 				}
-				if(!this.myIsNaN(Number(this.outTons))){
+				if (!this.myIsNaN(Number(this.outTons))) {
 					this.showMsg('出库吨数格式错误')
 					return
 				}

@@ -92,7 +92,7 @@
 					</u-form-item>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap.stop="oilFillSub">提交</view>
+			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32"  @tap="$u.throttle(oilFillSub, 1000)">提交</view>
 		</view>
 		<u-picker :show="pickerShow" :columns="columns" keyName="fillAddress" @cancel='pickerShow=false'
 			@confirm='pickerConfirm' :closeOnClickOverlay='true'></u-picker>

@@ -28,7 +28,7 @@
 					</view>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap.stop="submitForm">提交</view>
+			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap="$u.throttle(submitForm, 1000)">提交</view>
 		</view>
 		<u-picker :show="pickerShow" :columns="columns" keyName='clientName' @confirm='pickerConfirm'
 			@cancel='pickerCancel'>
