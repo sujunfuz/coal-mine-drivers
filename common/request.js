@@ -122,6 +122,7 @@ export default {
 				},
 				fail: err => {
 					if (isLoading) {
+						this.Loading = false;
 						setTimeout(() => {
 							uni.hideLoading()
 						}, 1500)

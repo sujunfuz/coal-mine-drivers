@@ -28,7 +28,10 @@
 					</view>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap="$u.throttle(submitForm, 1000)">提交</view>
+			<view v-if="Loading" class="modifybts bg999 colorfff bdRadius20 marAuto marT32">提交中...</view>
+			<view v-else class="modifybts bgMain colorfff bdRadius20 marAuto marT32"
+				@tap="$u.throttle(submitForm, 1000)">提交
+			</view>
 		</view>
 		<u-picker :show="pickerShow" :columns="columns" keyName='clientName' @confirm='pickerConfirm'
 			@cancel='pickerCancel'>
@@ -85,7 +88,8 @@
 				],
 				tempFiles: {}, //上传文件
 				goodsList: [],
-				popupShow: false
+				popupShow: false,
+				Loading: false,
 			}
 		},
 		onLoad(e) {
@@ -162,17 +166,19 @@
 				uni.showLoading({
 					title: '加载中',
 				})
-				let that = this;
+				this.Loading = true;
 				commonApi.uploadExcel({
 					clientId: this.clientId,
 					checkCode: this.checkCode,
 					goodsList: this.goodsList
 				}).then((res) => {
 					if (res.status == 200) {
-						that.showMsg('操作成功')
+						this.showMsg('操作成功')
 						setTimeout(e => {
 							this.goToSw('/pages/tabbar/index')
-						}, 1500)
+						}, 10)
+					} else {
+						this.Loading = false;
 					}
 				});
 			},

@@ -1,7 +1,7 @@
 <template>
 	<view class="registerbg">
 		<view class="pad20">
-			<u--form labelPosition="left" ref="uForm" labelAlign='right'>
+			<u--form labelPosition="left" ref="uForm" labelAlign="right">
 				<view class="flex-c marL20">
 					<view class="fontsize32">导入表格提交:</view>
 					<view class="minbts1 bgGreen colorfff marL32" @click="goToPage('/pages/index/exportHardware')">一键导入
@@ -12,8 +12,8 @@
 				</view>
 				<view class="formView">
 					<u-form-item label="客户名称" prop="clientName" ref="clientName" label-width="68px" required>
-						<view :class="clientName?'':'colorc4'" @click="pickerShow=true">
-							{{clientName||'请选择'}}
+						<view :class="clientName ? '' : 'colorc4'" @click="pickerShow = true">
+							{{ clientName || "请选择" }}
 						</view>
 					</u-form-item>
 				</view>
@@ -34,7 +34,7 @@
 				</view>
 				<view class="formView">
 					<u-form-item label="数量" prop="quantity" ref="quantity" label-width="68px" required>
-						<u--input v-model="quantity" border="none" placeholder="请输入" type='number'></u--input>
+						<u--input v-model="quantity" border="none" placeholder="请输入" type="number"></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
@@ -43,11 +43,13 @@
 					</u-form-item>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap="$u.throttle(submitForm, 1000)">提交
+			<view v-if="Loading" class="modifybts bg999 colorfff bdRadius20 marAuto marT32">提交中...</view>
+			<view v-else class="modifybts bgMain colorfff bdRadius20 marAuto marT32"
+				@tap="$u.throttle(submitForm, 1000)">提交
 			</view>
 		</view>
-		<u-picker :show="pickerShow" :columns="columns" keyName='clientName' @confirm='pickerConfirm'
-			@cancel='pickerCancel'>
+		<u-picker :show="pickerShow" :columns="columns" keyName="clientName" @confirm="pickerConfirm"
+			@cancel="pickerCancel">
 		</u-picker>
 	</view>
 </template>
@@ -55,29 +57,30 @@
 <script>
 	import {
 		toBase64 as convert
-	} from "@/common/base64.js"
-	import commonApi from '@/api/common.js'
+	} from "@/common/base64.js";
+	import commonApi from "@/api/common.js";
 	export default {
 		data() {
 			return {
 				inputStyle: {
-					padding: '15rpx 20rpx',
+					padding: "15rpx 20rpx",
 				},
 				clientId: "",
-				clientName: '',
-				goodsName: '',
-				specification: '',
+				clientName: "",
+				goodsName: "",
+				specification: "",
 				unit: "",
 				quantity: "",
 				checkCode: "",
 				pickerShow: false,
 				columns: [
 					[]
-				]
-			}
+				],
+				Loading: false,
+			};
 		},
 		onLoad(e) {
-			this.hardwareTop()
+			this.hardwareTop();
 		},
 		methods: {
 			//客户列表
@@ -90,55 +93,56 @@
 			},
 
 			pickerCancel() {
-				this.clientId = '';
-				this.clientName = '';
+				this.clientId = "";
+				this.clientName = "";
 				this.pickerShow = false;
 			},
 			pickerConfirm(e) {
-				console.log(e)
-				this.clientId = e.value[0].id
-				this.clientName = e.value[0].clientName
+				console.log(e);
+				this.clientId = e.value[0].id;
+				this.clientName = e.value[0].clientName;
 				this.pickerShow = false;
 			},
 			submitForm() {
 				if (!this.clientId) {
-					this.showMsg('请选择客户')
-					return
+					this.showMsg("请选择客户");
+					return;
 				}
 				if (!this.goodsName) {
-					this.showMsg('请输入物品名称')
-					return
+					this.showMsg("请输入物品名称");
+					return;
 				}
 				if (!this.quantity) {
-					this.showMsg('请输入数量')
-					return
+					this.showMsg("请输入数量");
+					return;
 				}
 				if (!this.checkCode) {
-					this.showMsg('请输入口令')
-					return
+					this.showMsg("请输入口令");
+					return;
 				}
-				uni.showLoading({
-					title: '加载中',
-				})
-				let that = this;
+				this.Loading = true;
 				commonApi.hardwareSubmit({
-					clientId: this.clientId,
-					goodsName: this.goodsName,
-					quantity: this.quantity,
-					specification: this.specification,
-					unit: this.unit,
-					checkCode: this.checkCode
-				}).then((res) => {
-					if (res.status == 200) {
-						that.showMsg('操作成功')
-						setTimeout(e => {
-							this.goToSw('/pages/tabbar/index')
-						}, 1500)
-					}
-				});
+						clientId: this.clientId,
+						goodsName: this.goodsName,
+						quantity: this.quantity,
+						specification: this.specification,
+						unit: this.unit,
+						checkCode: this.checkCode,
+					})
+					.then((res) => {
+						if (res.status == 200) {
+							this.showMsg("操作成功");
+							setTimeout((e) => {
+								this.Loading = false;
+								this.goToSw("/pages/tabbar/index");
+							}, 10);
+						} else {
+							this.Loading = false;
+						}
+					});
 			},
-		}
-	}
+		},
+	};
 </script>
 
 <style lang="scss" scoped>
@@ -162,7 +166,7 @@
 
 			.topline {
 				padding-top: 30rpx;
-				border-top: 1rpx solid #E3E4E5;
+				border-top: 1rpx solid #e3e4e5;
 			}
 
 			.imgView {
@@ -191,7 +195,6 @@
 			height: 90rpx;
 			line-height: 90rpx;
 		}
-
 
 		.icon-size {
 			width: 40rpx;

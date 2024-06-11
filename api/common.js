@@ -70,32 +70,32 @@ export default {
 	downloadTemplate: (data) => {
 		return request.get('/client/hardware/downloadTemplate', data);
 	},
-	
+
 	//导入excel
 	uploadExcel: (data) => {
 		return request.post('/client/hardware/upload', data);
 	},
-	
+
 	//提交导入数据
 	uploadExcel: (data) => {
 		return request.post('/client/hardware/submitUpload', data);
 	},
-	
+
 	//五金提交
 	hardwareSubmit: (data) => {
-		return request.post('/client/hardware/submit', data);
+		return request.post('/client/hardware/submit', data, true);
 	},
-	
+
 	//五金记录列表
 	hardwareList: (data) => {
 		return request.get('/client/hardware/page', data);
 	},
-	
+
 	//五金记录详情
-	hardwareDetails: (id,data) => {
-		return request.get('/client/hardware/'+id, data);
+	hardwareDetails: (id, data) => {
+		return request.get('/client/hardware/' + id, data);
 	},
-	
+
 	//五金客户列表
 	hardwareTop: (data) => {
 		return request.get('/client/hardware/clientList', data);
