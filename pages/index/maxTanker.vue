@@ -49,7 +49,9 @@
 					</u-form-item>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap="$u.throttle(oilRecordSub, 1000)">提交
+			<view v-if="Loading" class="modifybts bg999 colorfff bdRadius20 marAuto marT32">提交中...</view>
+			<view v-else class="modifybts bgMain colorfff bdRadius20 marAuto marT32"
+				@tap="$u.throttle(oilRecordSub, 1000)">提交
 			</view>
 		</view>
 	</view>
@@ -72,7 +74,8 @@
 				outTons: '',
 				checkCode: '',
 				fileList: [],
-				textList: []
+				textList: [],
+				Loading: false,
 			}
 		},
 		computed: {
@@ -221,6 +224,7 @@
 					title: '加载中',
 				})
 				let that = this;
+				that.Loading = true;
 				commonApi.oilRecordSub({
 					inImage: this.inImage,
 					inTons: this.inTons,
@@ -232,11 +236,12 @@
 				}).then((res) => {
 					if (res.status == 200) {
 						that.showMsg('操作成功')
+						that.Loading = false;
 						setTimeout(e => {
-							uni.navigateBack({
-								delta: 1
-							});
-						}, 1500)
+							that.goToSw("/pages/tabbar/index");
+						}, 10)
+					} else {
+						that.Loading = false;
 					}
 				});
 			},

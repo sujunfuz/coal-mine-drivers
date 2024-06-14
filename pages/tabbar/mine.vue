@@ -71,14 +71,6 @@
 			}
 		},
 		methods: {
-			getUserInfo() {
-				commonApi.getUserInfo().then((res) => {
-					if (res.status == 200) {
-						this.userInfo = res.data;
-						uni.setStorageSync('userInfo', res.data);
-					}
-				});
-			},
 			wxlogin() {
 				uni.showLoading({
 					title: '加载中',

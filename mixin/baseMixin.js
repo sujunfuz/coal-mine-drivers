@@ -81,13 +81,13 @@ export default {
 			}
 		},
 		//获取用户信息
-		getUserBaseInfo() {
-			commonApi.getUserBaseInfo().then(res => {
-				if (res.code == 200) {
+		getUserInfo() {
+			commonApi.getUserInfo().then((res) => {
+				if (res.status == 200) {
 					this.userInfo = res.data;
 					uni.setStorageSync('userInfo', res.data);
 				}
-			})
+			});
 		},
 		//微信登录
 		wxlogin(code, type) {
@@ -108,7 +108,7 @@ export default {
 					this.isLogin = true;
 					uni.setStorageSync('isLogin', true);
 					uni.setStorageSync('token', res.data.tokenValue);
-					this.getUserBaseInfo()
+					this.getUserInfo()
 					setTimeout(e => {
 						switch (type) {
 							case 'shopdetails':

@@ -55,15 +55,23 @@
 			let list = JSON.parse(JSON.stringify(menulist))
 			this.menuList = list;
 		},
+		onShow() {
+			if (this.isLogin) {
+				this.getUserInfo()
+			}
+		},
 		methods: {
 			goUrl(e) {
 				if (!this.isLogin) {
 					this.showMsg('请先登录解锁更多功能吧~')
 					return
 				}
-				console.log(e.plateType)
 				if (this.plateType != e.plateType) {
 					this.showMsg('车辆类型不符，请确认后重试~')
+					return
+				}
+				if (!e.certified) {
+					this.showMsg('认证审核审核中，请等待~')
 					return
 				}
 				this.goToPage(e.url)

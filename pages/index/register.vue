@@ -28,7 +28,9 @@
 					</u-form-item>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap="$u.throttle(submit0, 1000)">提交
+			<view v-if="Loading" class="modifybts bg999 colorfff bdRadius20 marAuto marT32">提交中...</view>
+			<view v-else class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap="$u.throttle(submit0, 1000)">
+				提交
 			</view>
 		</view>
 	</view>
@@ -49,7 +51,8 @@
 				producedBillImage: null,
 				checkCode: '',
 				fileList: [],
-				textList: []
+				textList: [],
+				Loading: false,
 			}
 		},
 		onLoad(e) {
@@ -141,6 +144,7 @@
 					title: '加载中',
 				})
 				let that = this;
+				that.Loading = true;
 				wx.uploadFile({
 					url: that.baseUrl + '/client/freightSettlement/submit0',
 					filePath: that.producedBillImage.path,
@@ -157,17 +161,20 @@
 						let rs = JSON.parse(uploadFileRes.data)
 						if (rs.status == 200) {
 							that.showMsg('操作成功')
+							that.Loading = false;
 							setTimeout(e => {
 								uni.navigateBack({
 									delta: 1
 								});
-							}, 1500)
+							}, 10)
 						} else {
 							that.showMsg(rs.message)
+							that.Loading = false;
 						}
 					},
 					fail(red) {
 						uni.hideLoading()
+						that.Loading = false;
 						console.log(red)
 					}
 				})

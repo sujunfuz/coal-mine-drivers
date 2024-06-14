@@ -52,7 +52,8 @@
 					</u-form-item>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap.stop="oilRecordSub">提交</view>
+			<view v-if="Loading" class="modifybts bg999 colorfff bdRadius20 marAuto marT32">提交中...</view>
+			<view v-else class="modifybts bgMain colorfff bdRadius20 marAuto marT32" @tap.stop="oilRecordSub">提交</view>
 		</view>
 		<view class="pad20" v-if="current==1">
 			<u--form labelPosition="left" ref="uForm">
@@ -92,7 +93,9 @@
 					</u-form-item>
 				</view>
 			</u--form>
-			<view class="modifybts bgMain colorfff bdRadius20 marAuto marT32"  @tap="$u.throttle(oilFillSub, 1000)">提交</view>
+			<view v-if="Loading" class="modifybts bg999 colorfff bdRadius20 marAuto marT32">提交中...</view>
+			<view v-else class="modifybts bgMain colorfff bdRadius20 marAuto marT32"
+				@tap="$u.throttle(oilFillSub, 1000)">提交</view>
 		</view>
 		<u-picker :show="pickerShow" :columns="columns" keyName="fillAddress" @cancel='pickerShow=false'
 			@confirm='pickerConfirm' :closeOnClickOverlay='true'></u-picker>
@@ -135,6 +138,7 @@
 				fillAddressId: '',
 				pickerShow: false,
 				columns: [],
+				Loading: false,
 			}
 		},
 		computed: {
@@ -179,6 +183,7 @@
 				if (this.current == 1) {
 					this.addressList()
 				}
+				this.Loading = false;
 			},
 			pickerConfirm(e) {
 				console.log(e)
@@ -350,6 +355,7 @@
 					title: '加载中',
 				})
 				let that = this;
+				that.Loading = true;
 				commonApi.oilRecordSub({
 					inImage: this.inImage,
 					inTons: this.inTons,
@@ -361,11 +367,14 @@
 				}).then((res) => {
 					if (res.status == 200) {
 						that.showMsg('操作成功')
+						that.Loading = false;
 						setTimeout(e => {
 							uni.navigateBack({
 								delta: 1
 							});
-						}, 1500)
+						}, 10)
+					} else {
+						that.Loading = false;
 					}
 				});
 			},
@@ -396,6 +405,7 @@
 					title: '加载中',
 				})
 				let that = this;
+				that.Loading = true;
 				commonApi.oilFillSub({
 					fillImage: this.fillImage,
 					fillLift: this.fillLift,
@@ -408,11 +418,14 @@
 				}).then((res) => {
 					if (res.status == 200) {
 						that.showMsg('操作成功')
+						that.Loading = false;
 						setTimeout(e => {
 							uni.navigateBack({
 								delta: 1
 							});
-						}, 1500)
+						}, 10)
+					} else {
+						that.Loading = false;
 					}
 				});
 			},
