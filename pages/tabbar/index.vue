@@ -70,7 +70,7 @@
 					this.showMsg('车辆类型不符，请确认后重试~')
 					return
 				}
-				if (!e.certified) {
+				if (!this.userInfo.certified) {
 					this.showMsg('认证审核审核中，请等待~')
 					return
 				}
