@@ -13,6 +13,10 @@ export default {
 	getUserInfo: (data) => {
 		return request.get('/client/userInfo', data);
 	},
+	//获取煤运列表
+	clientList: (data) => {
+		return request.get('/client/freightSettlement/clientList',data);
+	},
 	//首次提交
 	submit0: (obj1, obj2) => {
 		return request.post3('/client/freightSettlement/submit0?', obj1, obj2);

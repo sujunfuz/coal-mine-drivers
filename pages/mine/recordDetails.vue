@@ -14,6 +14,11 @@
 					</u-form-item>
 				</view>
 				<view class="formView">
+					<u-form-item label="煤运客户" prop="clientName" ref="clientName" label-width="80px">
+						{{rs.clientName}}
+					</u-form-item>
+				</view>
+				<view class="formView">
 					<u-form-item label="验收吨数" prop="receiptTons" ref="receiptTons" label-width="80px"
 						:required='!disabled'>
 						<view v-if='disabled'>{{rs.receiptTons}}</view>

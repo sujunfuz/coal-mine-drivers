@@ -23,6 +23,13 @@
 					</u-form-item>
 				</view>
 				<view class="formView">
+					<u-form-item label="煤运客户" prop="clientld" ref="clientld" label-width="80px" required>
+						<view :class="clientName?'color333':'colorc4'" @click="pickerShow=true">
+							{{clientName||'请选择'}}
+						</view>
+					</u-form-item>
+				</view>
+				<view class="formView">
 					<u-form-item label="煤运口令" prop="checkCode" ref="checkCode" label-width="80px" required>
 						<u--input v-model="checkCode" border="none" placeholder="请输入"></u--input>
 					</u-form-item>
@@ -33,6 +40,8 @@
 				提交
 			</view>
 		</view>
+		<u-picker :show="pickerShow" :columns="columns" @confirm='pickerConfirm' @cancel='pickerCancel'
+			keyName="clientName"></u-picker>
 	</view>
 </template>
 
@@ -53,10 +62,16 @@
 				fileList: [],
 				textList: [],
 				Loading: false,
+				clientName: '',
+				clientId: '',
+				pickerShow: false,
+				columns: [
+					[]
+				]
 			}
 		},
 		onLoad(e) {
-
+			this.clientList()
 		},
 		methods: {
 			chooseFile() {
@@ -70,6 +85,27 @@
 						// })
 					}
 				})
+			},
+
+			//煤运用户列表
+			clientList() {
+				commonApi.clientList().then((res) => {
+					if (res.status == 200) {
+						this.columns[0] = res.data;
+						// console.log(this.columns)
+					}
+				});
+			},
+			pickerCancel() {
+				this.clientName = '';
+				this.clientId = '';
+				this.pickerShow = false;
+			},
+			pickerConfirm(e) {
+				// console.log(e.value)
+				this.clientName = e.value[0].clientName;
+				this.clientId = e.value[0].id;
+				this.pickerShow = false;
 			},
 			// 识别图片的数字
 			getAccessToken(path) {
@@ -151,7 +187,8 @@
 					name: 'producedBillImage',
 					formData: {
 						producedTons: this.producedTons,
-						checkCode: this.checkCode
+						checkCode: this.checkCode,
+						clientId: this.clientId
 					},
 					header: {
 						'Authorization': uni.getStorageSync('token') || '',
