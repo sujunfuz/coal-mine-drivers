@@ -34,7 +34,7 @@
 				</view>
 				<view class="formView">
 					<u-form-item label="数量" prop="quantity" ref="quantity" label-width="68px" required>
-						<u--input v-model="quantity" border="none" placeholder="请输入" type="number"></u--input>
+						<u--input v-model="quantity" border="none" placeholder="请输入" type="digit"></u--input>
 					</u-form-item>
 				</view>
 				<view class="formView">
