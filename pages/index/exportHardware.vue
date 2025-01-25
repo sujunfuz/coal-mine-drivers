@@ -21,11 +21,9 @@
 						</view>
 						<view @click="popupShow=true">{{tempFiles.name}}</view>
 					</u-form-item>
-					<view class="formView">
-						<u-form-item label="五金口令" prop="checkCode" ref="checkCode" label-width="100px" required>
-							<u--input v-model="checkCode" border="none" placeholder="请输入"></u--input>
-						</u-form-item>
-					</view>
+					<u-form-item label="五金口令" prop="checkCode" ref="checkCode" label-width="100px" required>
+						<u--input v-model="checkCode" border="none" placeholder="请输入"></u--input>
+					</u-form-item>
 				</view>
 			</u--form>
 			<view v-if="Loading" class="modifybts bg999 colorfff bdRadius20 marAuto marT32">提交中...</view>
@@ -47,13 +45,23 @@
 									<view class="table1">物品名称</view>
 									<view class="table2">规格</view>
 									<view class="table2">单位</view>
-									<view class="table1">数量</view>
+									<view class="table2">数量</view>
+									<view class="table2">进货单价</view>
+									<view class="table2">出货单价</view>
+									<view class="table2">进货总价</view>
+									<view class="table2">出货总价</view>
+									<view class="table2">备注</view>
 								</view>
 								<view class="flex-c table_td" v-for="(item, index) in goodsList" :key='index'>
 									<view class="table1">{{item.goodsName||'-'}}</view>
 									<view class="table2">{{item.specification||'-'}}</view>
 									<view class="table2">{{item.unit||'-'}}</view>
-									<view class="table1">{{item.quantity||'-'}}</view>
+									<view class="table2">{{item.quantity||'-'}}</view>
+									<view class="table2">{{item.inPrice||'-'}}</view>
+									<view class="table2">{{item.outPrice||'-'}}</view>
+									<view class="table2">{{item.totalInPrice||'-'}}</view>
+									<view class="table2">{{item.totalOutPrice||'-'}}</view>
+									<view class="table2">{{item.remark||'-'}}</view>
 								</view>
 							</scroll-view>
 						</view>
@@ -259,8 +267,10 @@
 
 				.table_th {
 					height: 60rpx;
-					line-height: 60rpx;
+					line-height: 30rpx;
 					font-weight: bold;
+					font-size: 26rpx;
+					padding-bottom: 20rpx;
 				}
 
 				.table_td {
@@ -272,12 +282,12 @@
 					width: 100%;
 
 					.table1 {
-						width: 30%;
+						width: 20%;
 						text-align: center;
 					}
 
 					.table2 {
-						width: 20%;
+						width: 10%;
 						text-align: center;
 					}
 				}
